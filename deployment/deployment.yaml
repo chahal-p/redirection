@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redirection
+  namespace: pc
+spec:
+  selector:
+      matchLabels:
+        run: redirection
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: redirection
+    spec:
+      containers:
+      - name: redirection-1
+        image: pchahal24/redirection:2022-01-22
+        imagePullPolicy: Always
+        ports:
+          - name: port-5000
+            containerPort: 5000
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 100Mi
+        env:
+        - name: AAD_IDENTITY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: key
+        - name: AAD_IDENTITY_TENANT
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: tenant
+        - name: AAD_IDENTITY_CLIENTID
+          valueFrom:
+            secretKeyRef:
+              name: pc-identity
+              key: clientId
+
