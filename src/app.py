@@ -51,7 +51,7 @@ url_mapping_collection = CollectionOperations(logger, 'urlMapping', db)
 #============================== Register controllers ===============================
 cache = RedisCache(redis_client, timedelta(days=1), 'redirection-mapping-cache')
 
-api.add_resource(RedirectionController, '/<path>', endpoint="redirection", resource_class_args=(logger, cache, url_mapping_collection))
+api.add_resource(RedirectionController, '/<path:path>', endpoint="redirection", resource_class_args=(logger, cache, url_mapping_collection))
 
 #===================================================================================
 
