@@ -28,7 +28,8 @@ class RedirectionController(Controller):
             return redirection.value
         return wrapper(key)
 
-    def get(self, path):
+    def get(self, path: str):
+        path = path.strip('/')
         path = f'/{path}'
         try:
             target = self._get_cached(path)
