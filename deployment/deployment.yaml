@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: redirection-1
-        image: pchahal24/redirection:2022-09-01
+        image: pchahal24/redirection:2025-07-17
         imagePullPolicy: Always
         ports:
           - name: port-5000
